@@ -25,7 +25,6 @@ void mainRun() {
         //Handle events on queue
         while( SDL_PollEvent( &e ) != 0 ) {
             //User requests quit
-            std::cout << e.type;
             switch (e.type){
               case SDL_QUIT:
                 quit = true;
@@ -35,6 +34,8 @@ void mainRun() {
               case SDL_TEXTINPUT:
                 if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0)
                   text = text.substr(0, text.length()-1);
+                else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0)
+                    text = "";
                 else if (e.type == SDL_TEXTINPUT)
                   text += e.text.text;
                 break;
