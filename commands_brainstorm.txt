@@ -6,5 +6,62 @@ Highest Level Commands:
   5)Change Level(parameters)
   6)List Levels()
   7)Settings()
-  6)Change Setting()
-  7)...
+  6)Change Setting(parameters)
+  7)Check Resources()
+  8)Pause() / Continue()
+  9)Reset()
+  10)Change Speed(parameters)
+  11)...
+
+Command Usage Explanations:
+  Build() Parameters:
+    1)Object type (e.g.: Stairs, Bridge, Block, etc.)
+    2)Material type (e.g.: wood, metal, )
+    3)Location. First is x-coord, then y-coord.
+    Example of function syntax: Build(Stairs, Metal, 2, 4) Should place wooden
+    stairs at the location (2,4)
+    Returns to Terminal: "Object Built at: (location)"
+    Exceptions: Should not be able to build in certain places (walls, in the ground)
+    Should not permit use of Materials that you don't have.
+    Displays Error messages for said exceptions
+
+  Destroy() Parameters:
+    1)Location or All. First is x-coord, then y-coord. All should destroy all
+    objects on this level
+    Example of function syntax: Destroy(2,4) or Destroy(All)
+    Exceptions: No object at location / No objects on this level.
+
+  Save():
+    Saves the game state.
+
+  Help():
+    Opens the help.txt file with the explanation of the games "syntax", functions,
+    General help.
+
+  Change Level() Parameters:
+    1)Level number
+    Exceptions: Level Numbers out of range error. Display suitable error to Terminal
+
+  List Levels();
+    Lists all the available levels to the Terminal.
+
+  Settings():
+    Opens the settings page in the Terminal. Settings to be
+
+  Change Setting() Parameters:
+    Parameters to be added!
+    Exceptions: Do not change settings that don't exist or set them to values out of possible ranges.
+
+  Check Resources():
+    Should return all the available resources to the Terminal
+
+  Pause() / Continue():
+    Pauses / continues the game.
+
+  Reset():
+    Resets the character to the beginning of the level.
+
+  Change Speed():
+    1)Slow. The slowest movement (longest delay) speed.
+    2)Normal. The default movement (default delay) speed.
+    3)Fast. The fastest movement (shortest delay) speed.
