@@ -1,0 +1,61 @@
+"Name of the Game" game manual:
+
+  "Name of the Game" is a make-your-own-adventure type platformer with an
+  emphasis on the style of controls. The game is intended to teach people to
+  think "Computationally". The controls of the game are done by our own language
+  which works like a normal scripting programming language. Here is the
+  explanation of the syntax of this language:
+
+  Before the game starts, you have access to the Save, Help, List Levels, Change
+  Level(), Settings, Change Setting(), Start and Quit commands. These commands
+  will also be available during the game. The commands do the following:
+
+    Save: Saves the current game state in memory.
+
+    Help: Opens this file to show you all the commands available.
+
+    List Levels: Displays a list of all available levels for you to play on.
+
+    Change Level(): This command switches the game level to the one that is
+    specified within the brackets. Example: Change Level(1)
+
+    Settings: Displays a list of all changeable settings and their current state.
+
+    Change Setting(): Changes the setting specified as the first parameter in the
+    brackets to the value of the second parameter in the brackets. The Parameters
+    are separated by commas. Example: Change Setting(Terminal Colour, Black)
+
+    Start: This command will start the current chosen level.
+
+    Quit: This command will make the game quit.
+
+  During the game you will gain control of more commands. All the previous
+  commands are still available. You now should have access to the Build(),
+  Destroy(), Check Resources, Pause, Continue and Change Speed() commands.
+  These commands do the following:
+
+    Build(): This is the most important command of the game. This command lets
+    you build certain objects out of the materials that you have in a location of
+    your choosing. You have to input the parameters in this order: Object type,
+    Material type, x-Coordinate, y-Coordinate. Example: Build(Stairs, Metal, 2, 4)
+    This command call should create Stairs made of Metal in the location (2,4).
+
+    Destroy(): This command lets you destroy any object that you have already
+    placed by providing the location of the object on screen. If you wish,
+    you also have the option to destroy all objects on the screen by passing All
+    as the parameter. Example: Destroy(2,4) will destroy the stairs that you
+    placed in that location in the previous example, assuming that the stairs are
+    still in that location.
+
+    Check Resources: This command returns a list of all the remaining resources
+    to the Terminal.
+
+    Pause: This command pauses the running of the game. When the game screen is
+    paused you can still edit the environment, but your character simply won't
+    move.
+
+    Continue: This command will continue a paused game.
+
+    Change Speed(): This command dictates how quick the game runs. Your options
+    are: Slow, Normal and Fast. Example: Change Speed(Normal) will make your
+    game run at the default speed.
