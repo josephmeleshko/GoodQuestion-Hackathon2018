@@ -1,8 +1,7 @@
 #include <SDL2/SDL.h>
 #include <iostream>
-#include "main2.h"
-
-using namespace std;
+#include "mainLoop.h"
+#include "globalHeader.h"
 
 const int MAIN_SCREEN_WIDTH = 1280;
 const int MAIN_SCREEN_HEIGHT = 720;
@@ -13,12 +12,13 @@ const int TERMINAL_HEIGHT = 720;
 const int FRAME_LOCATION_X = 10;
 const int FRAME_LOCATION_Y = 100;
 
-const int BLOCK_SIZE = 40;
+bool quit = false;
+int blockSize = 40;
 
 int main(int argc, const char* argv[]) {
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) { //Attempt INIT and catch errors
-        cout << "SDL_Init Error: " << SDL_GetError() << endl;
+        std::cout << "SDL_Init Error: " << SDL_GetError() << std::endl;
         return 1;
     }
 
@@ -44,7 +44,6 @@ int main(int argc, const char* argv[]) {
     SDL_Renderer* mainRenderer = SDL_CreateSoftwareRenderer(mainSurface);
     SDL_Renderer* terminalRenderer = SDL_CreateSoftwareRenderer(terminalSurface);
 
-
     SDL_UpdateWindowSurface(mainWindow);
     SDL_UpdateWindowSurface(terminalWindow);
     SDL_FillRect(mainSurface, NULL, SDL_MapRGB(mainSurface->format, 255, 255, 255));
@@ -52,7 +51,7 @@ int main(int argc, const char* argv[]) {
     SDL_UpdateWindowSurface(mainWindow);
     SDL_UpdateWindowSurface(terminalWindow);
 
-    SDL_Delay(20000);
+    mainRun(mainRenderer, terminalRenderer);
 
     SDL_DestroyWindow(mainWindow);
     SDL_DestroyWindow(terminalWindow);
