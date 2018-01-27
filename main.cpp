@@ -14,6 +14,12 @@ const int FRAME_LOCATION_Y = 100;
 
 bool quit = false;
 int blockSize = 40;
+SDL_Window* mainWindow = NULL;
+SDL_Window* terminalWindow = NULL;
+SDL_Surface* mainSurface = NULL;
+SDL_Surface* terminalSurface = NULL;
+SDL_Renderer* mainRenderer = NULL;
+SDL_Renderer* terminalRenderer = NULL;
 
 int main(int argc, const char* argv[]) {
 
@@ -23,7 +29,7 @@ int main(int argc, const char* argv[]) {
     }
 
     //Build our game window
-    SDL_Window* mainWindow = SDL_CreateWindow("Main Game",
+    mainWindow = SDL_CreateWindow("Main Game",
                                             FRAME_LOCATION_X,
                                             FRAME_LOCATION_Y,
                                             MAIN_SCREEN_WIDTH,
@@ -31,7 +37,7 @@ int main(int argc, const char* argv[]) {
                                             SDL_WINDOW_SHOWN);
 
     //Build our terminal window
-    SDL_Window* terminalWindow = SDL_CreateWindow("Terminal",
+    terminalWindow = SDL_CreateWindow("Terminal",
                                             FRAME_LOCATION_X + MAIN_SCREEN_WIDTH,
                                             FRAME_LOCATION_Y,
                                             TERMINAL_WIDTH,
@@ -39,20 +45,14 @@ int main(int argc, const char* argv[]) {
                                             SDL_WINDOW_SHOWN);
 
     //Build surfaces and renderer
-    SDL_Surface* mainSurface = SDL_GetWindowSurface(mainWindow);
-    SDL_Surface* terminalSurface = SDL_GetWindowSurface(terminalWindow);
-    SDL_Renderer* mainRenderer = SDL_CreateSoftwareRenderer(mainSurface);
-    SDL_Renderer* terminalRenderer = SDL_CreateSoftwareRenderer(terminalSurface);
+    mainSurface = SDL_GetWindowSurface(mainWindow);
+    terminalSurface = SDL_GetWindowSurface(terminalWindow);
+    mainRenderer = SDL_CreateSoftwareRenderer(mainSurface);
+    terminalRenderer = SDL_CreateSoftwareRenderer(terminalSurface);
 
-    SDL_UpdateWindowSurface(mainWindow);
-    SDL_UpdateWindowSurface(terminalWindow);
-    SDL_FillRect(mainSurface, NULL, SDL_MapRGB(mainSurface->format, 255, 255, 255));
-    SDL_FillRect(terminalSurface, NULL, SDL_MapRGB(terminalSurface->format, 0, 0, 0));
-    SDL_UpdateWindowSurface(mainWindow);
-    SDL_UpdateWindowSurface(terminalWindow);
+    mainRun();
 
-    mainRun(mainRenderer, terminalRenderer);
-
+    //Once we're out of the main loop close everything
     SDL_DestroyWindow(mainWindow);
     SDL_DestroyWindow(terminalWindow);
     SDL_Quit();

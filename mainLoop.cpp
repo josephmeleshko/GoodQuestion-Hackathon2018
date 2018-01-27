@@ -1,13 +1,20 @@
 #include "mainLoop.h"
 #include "globalHeader.h"
 #include <SDL2/SDL.h>
+#include <iostream>
 
 void gameInit() {
+    SDL_UpdateWindowSurface(mainWindow);
+    SDL_UpdateWindowSurface(terminalWindow);
+    SDL_FillRect(mainSurface, NULL, SDL_MapRGB(mainSurface->format, 255, 255, 255));
+    SDL_FillRect(terminalSurface, NULL, SDL_MapRGB(terminalSurface->format, 0, 0, 0));
+    SDL_UpdateWindowSurface(mainWindow);
+    SDL_UpdateWindowSurface(terminalWindow);
     quit = false;
 }
 
-void mainRun(SDL_Renderer *mainRenderer, SDL_Renderer *terminalRenderer) {
-gameInit();
+void mainRun() {
+    gameInit();
     //Event handler
     SDL_Event e;
     while (!quit) {
@@ -21,9 +28,6 @@ gameInit();
                 break;
             }
         }
-        //std::cout << "You made it out of PollEvent loop";
-        // SDL_Delay(5000);
-        // quit = true;
     }
     std::cout << "You made it out of !quit loop";
 }

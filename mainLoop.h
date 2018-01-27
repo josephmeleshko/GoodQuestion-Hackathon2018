@@ -4,6 +4,6 @@
 #include <SDL2/SDL.h>
 
 void gameInit();
-void mainRun(SDL_Renderer *mainRenderer, SDL_Renderer *terminalRenderer);
+void mainRun();
 
 #endif
