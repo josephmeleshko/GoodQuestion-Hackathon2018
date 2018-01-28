@@ -14,6 +14,7 @@ bool isPlaying;
 int charX;
 int charY;
 int *activeLevel;
+int *levelPointer;
 
 void gameInit() {
     quit = false;
@@ -23,7 +24,9 @@ void gameInit() {
     SDL_UpdateWindowSurface(mainWindow);
     SDL_UpdateWindowSurface(terminalWindow);
     drawBackground();
-    activeLevel = level1data();
+    activeLevel = nullData();
+    levelPointer = level0data();
+    for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
     drawScreen(activeLevel);
 }
 
