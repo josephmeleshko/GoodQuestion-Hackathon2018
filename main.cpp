@@ -61,6 +61,7 @@ int main(int argc, const char* argv[]) {
     string input = "";
     ifstream read("input.txt");
     read >> input;
+    std::getline(read,input);
     cout << input << endl;
 
     //Once we're out of the main loop close everything
