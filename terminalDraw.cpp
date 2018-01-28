@@ -51,7 +51,7 @@ void terminalDisplay(char input){
         if(input == '\b'){
 
             terminalJ--;
-            
+
             std::string temp = "./assets/space.bmp";
             const char *cstar = temp.c_str();
             SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
@@ -108,6 +108,5 @@ void terminalDisplay(char input){
         renderTexture(tex1, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
         SDL_UpdateWindowSurface(terminalWindow);
         SDL_RenderPresent(terminalRenderer);
-    //while(true){}
 
 }

@@ -20,7 +20,8 @@ void drawScreen(int level[]) {
 
 void drawBackground() {
     SDL_Texture* tex = NULL;
-    tex = loadTexture("./assets/bg.bmp", mainRenderer);
+    std::string bgnum = "./assets/bg" + std::to_string(currentLevel) + ".bmp";
+    tex = loadTexture(bgnum.c_str(), mainRenderer);
     renderTexture(tex, mainRenderer, 0, 0, 1280, 720);
 
     for (int i = 0; i < 32; i++) {

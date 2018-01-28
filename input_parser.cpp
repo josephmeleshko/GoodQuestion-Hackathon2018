@@ -101,22 +101,36 @@ bool InGameChangeLevelFunc(string arg){
         activeLevel = nullData();
         levelPointer = level0data();
         for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
-        drawScreen(activeLevel);
         currentLevel = 0;
+        drawScreen(activeLevel);
     }
     else if (temp == "1") {
         activeLevel = nullData();
         levelPointer = level1data();
         for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
-        drawScreen(activeLevel);
         currentLevel = 1;
+        drawScreen(activeLevel);
     }
     else if (temp == "2") {
         activeLevel = nullData();
         levelPointer = level2data();
         for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
-        drawScreen(activeLevel);
         currentLevel = 2;
+        drawScreen(activeLevel);
+    }
+    else if (temp == "3") {
+        activeLevel = nullData();
+        levelPointer = level3data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        currentLevel = 3;
+        drawScreen(activeLevel);
+    }
+    else if (temp == "4") {
+        activeLevel = nullData();
+        levelPointer = level4data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        currentLevel = 4;
+        drawScreen(activeLevel);
     }
     return true;
 }
