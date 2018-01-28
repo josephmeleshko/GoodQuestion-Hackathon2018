@@ -63,7 +63,7 @@ int main(int argc, const char* argv[]) {
     ifstream file("input.txt");
     if (file.is_open())
          while (file.good())
-             input += getline(file, txt); + '\n'
+             input += getline(file, txt); + '\n';
     file.close();
 
 /*
