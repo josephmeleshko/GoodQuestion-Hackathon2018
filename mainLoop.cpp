@@ -36,6 +36,8 @@ void mainRun() {
     //Event handler
     SDL_Event e;
     bool terminalFocus = true;
+    bool editTab = false;
+    bool terminalTab = true;
     SDL_StartTextInput();
     std::string text = "";
 
@@ -51,7 +53,7 @@ void mainRun() {
                 quit = true;
                 //std::cout<< "You made it to quit";
                 break;
-                
+
                 case SDL_WINDOWEVENT:
                     if (e.window.windowID == SDL_GetWindowID(terminalWindow)){
                         switch(e.window.event){
@@ -76,13 +78,14 @@ void mainRun() {
                             if( ( x > 0 ) && ( x < 180 ) && ( y > 0 ) && ( y < 40 ) ) {
                                 //Set the button sprite
                                 //clip = &clips[ CLIP_MOUSEDOWN ];
-
-                                std::cout << "editor" << std::endl;
+                                editTab = true;
+                                terminalTab = false;
                             }
                             else if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 40 ) ) {
                                 //Set the button sprite
                                 //clip = &clips[ CLIP_MOUSEDOWN ];
-                                std::cout << "terminal" << std::endl;
+                                editTab = false;
+                                terminalTab = true;
                             }
                         }
                     }
@@ -90,18 +93,20 @@ void mainRun() {
 
                 case SDL_TEXTINPUT:
                 case SDL_KEYDOWN:
-                //Handle backspace
-                if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0) {
-                    text.pop_back();
-                }
-                //Handle Return
-                else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0) {
-                    text += '\n';
-                }
-                //Handle text
-                if (e.type == SDL_TEXTINPUT) {
-                text += e.text.text;
+                if (terminalFocus){
+                        //Handle backspace
+                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0) {
+                            text.pop_back();
+                        }
+                        //Handle Return
+                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0) {
+                            text += '\n';
+                        }
+                        //Handle text
+                        if (e.type == SDL_TEXTINPUT) {
+                        text += e.text.text;
 
+                        }
                 }
                 break;
             }
