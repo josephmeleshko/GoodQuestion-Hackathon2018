@@ -7,6 +7,7 @@
 
 //level needs to be int [17][31] kinda
 void drawScreen(int level[]) {
+    drawBackground();
     for (int i = 0; i < 17; i++) {
         for (int j = 0; j < 31; j++) {
             int value = level[31*i + j];

@@ -12,7 +12,6 @@ const int TERMINAL_HEIGHT = 720;
 const int FRAME_LOCATION_X = 10;
 const int FRAME_LOCATION_Y = 100;
 
-bool quit = false;
 int blockSize = 40;
 SDL_Window* mainWindow = NULL;
 SDL_Window* terminalWindow = NULL;
