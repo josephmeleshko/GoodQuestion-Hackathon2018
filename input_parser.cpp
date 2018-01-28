@@ -220,19 +220,6 @@ void parse_terminal_input(){
     string base_input = InputFile("input.txt");
     /* strtok example */
 
-    int main ()
-    {
-      char str[] ="- This, a sample string.";
-      char * pch;
-      printf ("Splitting string \"%s\" into tokens:\n",str);
-      pch = strtok (str," ,.-");
-      while (pch != NULL)
-      {
-        printf ("%s\n",pch);
-        pch = strtok (NULL, " ,.-");
-      }
-      return 0;
-    }
     if(base_input.find("change level") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
@@ -312,7 +299,6 @@ void parse_terminal_input(){
     else{
         cout << "Wrong Input!" << endl;
     }
-
 }
 
 string InputFile(string filename) {

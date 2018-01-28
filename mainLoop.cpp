@@ -109,6 +109,7 @@ void mainRun() {
                             terminalDisplay('\n');
                             if (terminalTab) {
                                 parse_terminal_input();
+                                text = "";
                             }
                         }
                         //Handle text
