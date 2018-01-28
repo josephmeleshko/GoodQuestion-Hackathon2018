@@ -55,7 +55,6 @@ void mainRun() {
                 case SDL_QUIT:
                 case SDL_WINDOWEVENT_CLOSE:
                 quit = true;
-                //std::cout<< "You made it to quit";
                 break;
 
                 case SDL_WINDOWEVENT:
@@ -124,7 +123,6 @@ void mainRun() {
                     file << text;
                     file.flush();
                     file.close();
-                    //std::cout << char(text[text.length()-1]) << std::endl;
                 }
                 break;
             }

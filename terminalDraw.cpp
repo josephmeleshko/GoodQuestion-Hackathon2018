@@ -12,9 +12,8 @@ int terminalJ = 0;
 int savedLines = 0;
 
 void terminalDisplay(char input){
-        //std::string input_char = std::to_string(input);
+    
 
-        std::cout << input << std::endl;
         std::string char_directory = "./assets/_.bmp";
         if(input == ','){
             char_directory = "./assets/comma.bmp";

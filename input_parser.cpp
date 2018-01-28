@@ -6,6 +6,7 @@
 #include <locale>
 #include <fstream>
 #include "input_parser.h"
+#include "globalHeader.h"
 #include <stdio.h>
 
 using namespace std;
@@ -159,11 +160,13 @@ bool InGameCheckResourcesFunc(){
 
 
 bool InGamePauseFunc(){
+    isPlaying = false;
     return true;
 }
 
 
 bool InGameContinueFunc(){
+    isPlaying = true;
     return true;
 }
 
