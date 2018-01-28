@@ -314,47 +314,43 @@ void parse_terminal_input(){
         }
     }
     else if(base_input.find("save") != string::npos){
-        cout << "Entering the Save func" << endl;
         InGameSaveFunc();
     }
     else if(base_input.find("help") != string::npos){
-        cout << "Entering the Help func" << endl;
         InGameHelpFunc();
     }
     else if(base_input.find("list levels") != string::npos){
-        cout << "Entering the List Levels func" << endl;
         InGameListLevelsFunc();
     }
     else if(base_input.find("settings") != string::npos){
-        cout << "Entering the Settings func" << endl;
         InGameSettingsFunc();
     }
     else if(base_input.find("check resources") != string::npos){
-        cout << "Entering the Check Resources func" << endl;
         InGameCheckResourcesFunc();
     }
     else if(base_input.find("pause") != string::npos){
-        cout << "Entering the Pause func" << endl;
         InGamePauseFunc();
     }
     else if(base_input.find("continue") != string::npos){
-        cout << "Entering the Continue func" << endl;
         InGameContinueFunc();
     }
     else if(base_input.find("reset") != string::npos){
-        cout << "Entering the Reset func" << endl;
         InGameResetFunc();
     }
     else if(base_input.find("run code") != string::npos){
-        cout << "Entering the InGameRunCode func" << endl;
         InGameRunCode();
     }
     else if(base_input.find("start") != string::npos){
-        cout << "Entering the Start func" << endl;
         InGameStartFunc();
     }
     else if(base_input.find("quit") != string::npos){
-        cout << "Entering the Quit func" << endl;
+        InGameQuitFunc();
+    }
+    else if(base_input.find("exit") != string::npos){
+        InGameQuitFunc();
+    }
+    else if(base_input.find("haltandcatchfire") != string::npos){
+        cout << "AHAHHAHAHAHHAHAHAHAH" << endl;
         InGameQuitFunc();
     }
     else{
