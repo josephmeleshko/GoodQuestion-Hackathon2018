@@ -65,6 +65,7 @@ void mainRun() {
                             }
                         }
                         break;
+                    case SDL_KEYDOWN:
                     case SDL_TEXTINPUT:
                         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0)
                             text = text.substr(0, text.length()-1);
@@ -74,7 +75,7 @@ void mainRun() {
                         text += e.text.text;
                         break;
             }
-            //std::cout << text << std::endl;
+            std::cout << text << std::endl;
         }
     }
     //std::cout << "You made it out of !quit loop";
