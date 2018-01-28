@@ -26,6 +26,14 @@ SDL_Texture* getTexture(int value) {
     else if (value == 6) {
         tex = loadTexture("./assets/metalBlock.bmp", mainRenderer);
     }
+    else if (value == 7) {
+        tex = loadTexture("./assets/flippedSlope.bmp", mainRenderer);
+    }
+    else if (value == 8) {
+        tex = loadTexture("./assets/flippedCharacter.bmp", mainRenderer)
+    }
+
+
     return tex;
 }
 

@@ -12,6 +12,9 @@ const int TERMINAL_HEIGHT = 720;
 const int FRAME_LOCATION_X = 10;
 const int FRAME_LOCATION_Y = 100;
 
+//stops windows from overlapping
+const int FRAME_BUFFER = 40;
+
 bool quit = false;
 int blockSize = 40;
 SDL_Window* mainWindow = NULL;
@@ -38,7 +41,7 @@ int main(int argc, const char* argv[]) {
 
     //Build our terminal window
     terminalWindow = SDL_CreateWindow("Terminal",
-                                            FRAME_LOCATION_X + MAIN_SCREEN_WIDTH,
+                                            FRAME_LOCATION_X + MAIN_SCREEN_WIDTH + FRAME_BUFFER,
                                             FRAME_LOCATION_Y,
                                             TERMINAL_WIDTH,
                                             TERMINAL_HEIGHT,
