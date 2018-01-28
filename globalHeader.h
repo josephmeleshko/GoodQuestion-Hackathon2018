@@ -13,6 +13,7 @@ extern SDL_Surface* terminalSurface;
 extern SDL_Renderer* mainRenderer;
 extern SDL_Renderer* terminalRenderer;
 extern int *activeLevel;
+extern int *levelPointer;
 extern int charX;
 extern int charY;
 

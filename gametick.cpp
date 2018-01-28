@@ -18,7 +18,7 @@ void changeSpace(int x, int y, int value) {
 }
 
 void gametick() {
-    if (isPlaying && (SDL_GetTicks() - lastTickTime > 1000)) {
+    if (isPlaying && (SDL_GetTicks() - lastTickTime > 200)) {
         lastTickTime = SDL_GetTicks();
         if (getSpace(charX, charY-1) == 0) {
             changeSpace(charX, charY-1, 2);
@@ -34,7 +34,9 @@ void gametick() {
             changeSpace(charX+1, charY, 2);
             changeSpace(charX, charY, 0);
             charX++;
-            activeLevel = level0data();
+            activeLevel = nullData();
+            levelPointer = level0data();
+            for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
             drawScreen(activeLevel);
         }
         drawScreen(activeLevel);
