@@ -63,7 +63,7 @@ void terminalDisplay(char input){
                 SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
 
                 for(int i = 0; i < 35; i++){
-                    for(int j = 0; j < 25; j++){
+                    for(int j = 0; j < 26; j++){
                         renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+1), 14, letterSize);
 
                     }
@@ -84,7 +84,7 @@ void terminalDisplay(char input){
                 SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
 
                 for(int i = 0; i < 35; i++){
-                    for(int j = 0; j < 25; j++){
+                    for(int j = 0; j < 26; j++){
                         renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+1), 14, letterSize);
 
                     }

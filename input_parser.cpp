@@ -215,7 +215,8 @@ void parse_editor_input(){
 }
 
 void parse_terminal_input(){
-    string base_input = InputLine("input.txt");
+    string base_input = InputFile("input.txt");
+    cout << base_input << endl;
     if(base_input.find("change level") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
