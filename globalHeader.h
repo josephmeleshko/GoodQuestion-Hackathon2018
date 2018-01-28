@@ -20,5 +20,7 @@ extern int charX;
 extern int charY;
 extern int terminalI;
 extern int terminalJ;
+extern int currentLevel;
+extern int tickTime;
 
 #endif

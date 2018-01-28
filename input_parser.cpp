@@ -7,6 +7,8 @@
 #include <fstream>
 #include "input_parser.h"
 #include "globalHeader.h"
+#include "mainDraw.h"
+#include "levels.h"
 #include <stdio.h>
 
 using namespace std;
@@ -98,7 +100,28 @@ bool InGameChangeLevelFunc(string arg){
         cout << "Wrong number of arguments for the Change Level() command";
         return false;
     }
-    cout << temp << endl;
+
+    if (temp == "0") {
+        activeLevel = nullData();
+        levelPointer = level0data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        drawScreen(activeLevel);
+        currentLevel = 0;
+    }
+    else if (temp == "1") {
+        activeLevel = nullData();
+        levelPointer = level1data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        drawScreen(activeLevel);
+        currentLevel = 1;
+    }
+    else if (temp == "2") {
+        activeLevel = nullData();
+        levelPointer = level2data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        drawScreen(activeLevel);
+        currentLevel = 2;
+    }
     return true;
 }
 
@@ -134,7 +157,7 @@ bool InGameChangeSpeedFunc(string arg){
         cout << "Wrong number of arguments for the Change Speed() command";
         return false;
     }
-    cout << temp << endl;
+    tickTime = atoi(temp.c_str());
     return true;
 }
 
@@ -172,7 +195,24 @@ bool InGameContinueFunc(){
 
 
 bool InGameResetFunc(){
-
+    if (currentLevel == 0) {
+        activeLevel = nullData();
+        levelPointer = level0data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        drawScreen(activeLevel);
+    }
+    else if (currentLevel == 1) {
+        activeLevel = nullData();
+        levelPointer = level1data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        drawScreen(activeLevel);
+    }
+    else if (currentLevel == 2) {
+        activeLevel = nullData();
+        levelPointer = level2data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        drawScreen(activeLevel);
+    }
     return true;
 }
 
@@ -183,6 +223,7 @@ bool InGameStartFunc(){
 
 
 bool InGameQuitFunc(){
+    quit = true;
     return true;
 }
 

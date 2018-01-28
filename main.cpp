@@ -65,5 +65,7 @@ int main(int argc, const char* argv[]) {
     SDL_DestroyWindow(terminalWindow);
     SDL_Quit();
 
+    remove("editor.txt");
+
     return 0;
 }

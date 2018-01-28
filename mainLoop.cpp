@@ -19,14 +19,18 @@ int charX;
 int charY;
 int *activeLevel;
 int *levelPointer;
+int currentLevel;
+int tickTime;
 std::string filename = "editor.txt";
 
 void gameInit() {
     quit = false;
-    isPlaying = true;
+    isPlaying = false;
     walkingRight = true;
     charX = 0;
     charY = 0;
+    currentLevel = 0;
+    tickTime = 1000;
     SDL_UpdateWindowSurface(mainWindow);
     SDL_UpdateWindowSurface(terminalWindow);
     drawBackground();
@@ -84,10 +88,8 @@ void mainRun() {
                             int x = e.button.x;
                             int y = e.button.y;
 
-                            //If the mouse is over the button
+                            //If the mouse is over the edit tab
                             if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 40 ) ) {
-                                //Set the button sprite
-                                //clip = &clips[ CLIP_MOUSEDOWN ];
                                 editTab = true;
                                 terminalTab = false;
                                 isPlaying = false;
@@ -101,13 +103,15 @@ void mainRun() {
                                     }
                                     parse_editor_input(filename);
                                 }
-                                
+
                                 SDL_Texture* tex = NULL;
                                 tex = loadTexture("./assets/tab1.bmp", terminalRenderer);
                                 renderTexture(tex, terminalRenderer, 0, 0, 360, 40);
                                 SDL_UpdateWindowSurface(terminalWindow);
                                 SDL_RenderPresent(terminalRenderer);
                             }
+
+                            //If the mouse is over the terminal tab
                             else if( ( x > 0 ) && ( x < 180 ) && ( y > 0 ) && ( y < 40 ) ) {
                                 //Set the button sprite
                                 //clip = &clips[ CLIP_MOUSEDOWN ];
