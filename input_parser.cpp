@@ -6,6 +6,8 @@
 #include <locale>
 #include <fstream>
 #include "input_parser.h"
+#include <stdio.h>
+
 using namespace std;
 
 // trim from start
@@ -215,7 +217,22 @@ void parse_editor_input(){
 }
 
 void parse_terminal_input(){
-    string base_input = InputLine("input.txt");
+    string base_input = InputFile("input.txt");
+    /* strtok example */
+
+    int main ()
+    {
+      char str[] ="- This, a sample string.";
+      char * pch;
+      printf ("Splitting string \"%s\" into tokens:\n",str);
+      pch = strtok (str," ,.-");
+      while (pch != NULL)
+      {
+        printf ("%s\n",pch);
+        pch = strtok (NULL, " ,.-");
+      }
+      return 0;
+    }
     if(base_input.find("change level") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
