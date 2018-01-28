@@ -30,6 +30,7 @@ void gametick() {
             levelPointer = level0data();
             for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
             drawScreen(activeLevel);
+            isPlaying = false;
         }
         else if (walkingRight) {
             if (charX == 31) {
@@ -51,6 +52,7 @@ void gametick() {
                 levelPointer = level0data();
                 for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
                 drawScreen(activeLevel);
+                isPlaying = false;
             }
             else if (getSpace(charX+1, charY) == 4) {
                 changeSpace(charX+1, charY+1, 2);
@@ -83,6 +85,8 @@ void gametick() {
                 walkingRight = true;
                 for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
                 drawScreen(activeLevel);
+                walkingRight = true;
+                isPlaying = false;
             }
             else if (getSpace(charX-1, charY) == 7) {
                 changeSpace(charX-1, charY+1, 2);

@@ -6,6 +6,7 @@
 #include <locale>
 #include <fstream>
 #include "input_parser.h"
+#include "globalHeader.h"
 #include <stdio.h>
 
 using namespace std;
@@ -159,11 +160,13 @@ bool InGameCheckResourcesFunc(){
 
 
 bool InGamePauseFunc(){
+    isPlaying = false;
     return true;
 }
 
 
 bool InGameContinueFunc(){
+    isPlaying = true;
     return true;
 }
 
@@ -189,7 +192,17 @@ bool InGameSaveFunc(){
 
 
 void parse_editor_input(){
-    string base_input = InputFile("input.txt");
+    string base_input = InputFile("editor.txt");
+
+    string delimiter = "\n";
+
+    size_t pos = 0;
+    string token;
+    while ((pos = base_input.find(delimiter)) != string::npos) {
+        token = base_input.substr(0, pos);
+        cout << token << endl;
+        base_input.erase(0, pos + delimiter.length());
+    }
     if(base_input.find("build") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
@@ -218,7 +231,6 @@ void parse_editor_input(){
 
 void parse_terminal_input(){
     string base_input = InputFile("input.txt");
-    /* strtok example */
 
     if(base_input.find("change level") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
@@ -299,6 +311,7 @@ void parse_terminal_input(){
     else{
         cout << "Wrong Input!" << endl;
     }
+
 }
 
 string InputFile(string filename) {
