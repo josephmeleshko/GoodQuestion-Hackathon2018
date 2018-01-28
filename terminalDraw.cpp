@@ -6,6 +6,7 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <string>
+#include "input_parser.h"
 
 int terminalI = 0;
 int terminalJ = 0;
@@ -57,7 +58,15 @@ void terminalDisplay(char input){
             SDL_RenderPresent(terminalRenderer);
             if(terminalJ < 0){
                 if(terminalI > 0){
-                    terminalJ = 25;
+                    string in = InputFile("editor.txt");
+                    int count = 0;
+                    for (int i = 0; i < in.length() - 2; i++) {
+                        count++;
+                        if (in[i] == '\n') {
+                            count = 0;
+                        }
+                    }
+                    terminalJ = count;
                     terminalI--;
                     renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
                     SDL_UpdateWindowSurface(terminalWindow);
