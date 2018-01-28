@@ -1,6 +1,6 @@
 #ifndef LEVELS_H
 #define LEVELS_H
 
-void declareLevels();
+int* level0data();
 
 #endif

@@ -15,7 +15,7 @@ SDL_Texture* getTexture(int value) {
         tex = loadTexture("./assets/character.bmp", mainRenderer);
     }
     else if (value == 3) {
-        tex = loadTexture("./assets/metalBlock.bmp", mainRenderer);
+        tex = loadTexture("./assets/flag.bmp", mainRenderer);
     }
     return tex;
 }

@@ -4,11 +4,11 @@
 #include "globalHeader.h"
 #include <SDL2/SDL.h>
 
-//level needs to be int [15][31]
-void drawScreen(int level[][31]) {
+//level needs to be int [17][31] kinda
+void drawScreen(int level[]) {
     for (int i = 0; i < 17; i++) {
         for (int j = 0; j < 31; j++) {
-            int value = level[i][j];
+            int value = level[31*i + j];
             SDL_Texture* tex = getTexture(value);
             renderTexture(tex, mainRenderer, blockSize*(j+1), blockSize*(i), blockSize, blockSize);
         }
