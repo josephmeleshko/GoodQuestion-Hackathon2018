@@ -12,7 +12,12 @@ SDL_Texture* getTexture(int value) {
         tex = loadTexture("./assets/block.bmp", mainRenderer);
     }
     else if (value == 2) {
-        tex = loadTexture("./assets/character.bmp", mainRenderer);
+        if (walkingRight) {
+            tex = loadTexture("./assets/character.bmp", mainRenderer);
+        }
+        else {
+            tex = loadTexture("./assets/flippedCharacter.bmp", mainRenderer);
+        }
     }
     else if (value == 3) {
         tex = loadTexture("./assets/flag.bmp", mainRenderer);
@@ -29,10 +34,6 @@ SDL_Texture* getTexture(int value) {
     else if (value == 7) {
         tex = loadTexture("./assets/flippedSlope.bmp", mainRenderer);
     }
-    else if (value == 8) {
-        tex = loadTexture("./assets/flippedCharacter.bmp", mainRenderer);
-    }
-
 
     return tex;
 }
