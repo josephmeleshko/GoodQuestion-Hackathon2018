@@ -30,7 +30,7 @@ SDL_Texture* getTexture(int value) {
         tex = loadTexture("./assets/flippedSlope.bmp", mainRenderer);
     }
     else if (value == 8) {
-        tex = loadTexture("./assets/flippedCharacter.bmp", mainRenderer)
+        tex = loadTexture("./assets/flippedCharacter.bmp", mainRenderer);
     }
 
 
