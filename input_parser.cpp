@@ -296,10 +296,18 @@ void parse_input(){
 
 
 int main(){
+    string txt;
     string input = "";
-    ifstream read("input.txt");
-    read >> input;
+    ifstream file("input.txt");
+    if (file.is_open()) {
+        while (file.good()) {
+            getline(file, txt);
+            input += txt + '\n';
+        }
+    }
     cout << input << endl;
+    file.close();
+
     while(input != "END"){
         parse_input();
         cout << endl;
