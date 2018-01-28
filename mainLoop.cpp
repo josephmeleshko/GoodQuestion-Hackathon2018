@@ -28,6 +28,7 @@ void mainRun() {
             //User requests quit
             switch (e.type){
                 case SDL_QUIT:
+                case SDL_WINDOWEVENT_CLOSE:
                     quit = true;
                     //std::cout<< "You made it to quit";
                     break;
