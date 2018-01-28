@@ -27,7 +27,7 @@ void terminalDisplay(char input){
         }
         const char *cstar = char_directory.c_str();
         SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
-        renderTexture(tex, terminalRenderer, letterSize*terminalJ, letterSize*(terminalI+1), letterSize, letterSize);
+        renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+1), 14, letterSize);
         SDL_UpdateWindowSurface(terminalWindow);
         SDL_RenderPresent(terminalRenderer);
         terminalJ++;
@@ -37,13 +37,16 @@ void terminalDisplay(char input){
             std::string temp = "./assets/space.bmp";
             const char *cstar = temp.c_str();
             SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
-            renderTexture(tex, terminalRenderer, letterSize*terminalJ, letterSize*(terminalI+1), letterSize, letterSize);
+            renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+1), 14, letterSize);
             SDL_UpdateWindowSurface(terminalWindow);
             SDL_RenderPresent(terminalRenderer);
             if(terminalJ < 0){
                 if(terminalI > 0){
-                    terminalJ = 17;
+                    terminalJ = 25;
                     terminalI--;
+                    renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+1), 14, letterSize);
+                    SDL_UpdateWindowSurface(terminalWindow);
+                    SDL_RenderPresent(terminalRenderer);
                 }
                 else{
                     terminalJ = 0;
@@ -61,8 +64,8 @@ void terminalDisplay(char input){
                 SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
 
                 for(int i = 0; i < 35; i++){
-                    for(int j = 0; j < 18; j++){
-                        renderTexture(tex, terminalRenderer, letterSize*j, letterSize*(i+1), letterSize, letterSize);
+                    for(int j = 0; j < 26; j++){
+                        renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+1), 14, letterSize);
 
                     }
                 }
@@ -73,7 +76,7 @@ void terminalDisplay(char input){
             }
         }
 
-        if(terminalJ > 17){
+        if(terminalJ > 25){
             terminalI++;
             terminalJ = 0;
             if(terminalI > 34){
@@ -82,8 +85,8 @@ void terminalDisplay(char input){
                 SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
 
                 for(int i = 0; i < 35; i++){
-                    for(int j = 0; j < 18; j++){
-                        renderTexture(tex, terminalRenderer, letterSize*j, letterSize*(i+1), letterSize, letterSize);
+                    for(int j = 0; j < 26; j++){
+                        renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+1), 14, letterSize);
 
                     }
                 }

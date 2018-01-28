@@ -26,7 +26,7 @@ void drawBackground() {
     for (int i = 0; i < 32; i++) {
         SDL_Texture* tex2 = NULL;
         std::string s = std::to_string(i);
-        s = "./assets/" + s + ".bmp";
+        s = "./assets/large" + s + ".bmp";
         const char *cstar = s.c_str();
         tex2 = loadTexture(cstar, mainRenderer);
         renderTexture(tex2, mainRenderer, blockSize*(i), 680, blockSize, blockSize);
@@ -35,7 +35,7 @@ void drawBackground() {
     for (int i = 1; i < 18; i++) {
         SDL_Texture* tex3 = NULL;
         std::string s = std::to_string(i);
-        s = "./assets/" + s + ".bmp";
+        s = "./assets/large" + s + ".bmp";
         const char *cstar = s.c_str();
         tex3 = loadTexture(cstar, mainRenderer);
         renderTexture(tex3, mainRenderer, 0, 720-(blockSize*(i+1)), blockSize, blockSize);
