@@ -97,6 +97,7 @@ void mainRun() {
                 case SDL_TEXTINPUT:
                 case SDL_KEYDOWN:
                 if (terminalFocus){
+                    if(terminalTab) {
                         //Handle backspace
                         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0) {
                             text.pop_back();
@@ -116,13 +117,38 @@ void mainRun() {
                             text += e.text.text;
                             terminalDisplay(text[text.length()-1]);
                         }
-                    std::ofstream file("input.txt");
-                    if (!file) {
-                        std::cerr << "can't open output file" << std::endl;
+                        std::ofstream file("input.txt");
+                        if (!file) {
+                            std::cerr << "can't open output file" << std::endl;
+                        }
+                        file << text;
+                        file.flush();
+                        file.close();
                     }
-                    file << text;
-                    file.flush();
-                    file.close();
+                    if(editTab) {
+                        //Handle backspace
+                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0) {
+                            text.pop_back();
+                            terminalDisplay('\b');
+                        }
+                        //Handle Return
+                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0) {
+                            text += '\n';
+                            terminalDisplay('\n');
+                        }
+                        //Handle text
+                        if (e.type == SDL_TEXTINPUT) {
+                            text += e.text.text;
+                            terminalDisplay(text[text.length()-1]);
+                        }
+                        std::ofstream editorFile("editor.txt");
+                        if (!editorFile) {
+                            std::cerr << "can't open output file" << std::endl;
+                        }
+                        editorFile << text;
+                        editorFile.flush();
+                        editorFile.close();
+                    }
                 }
                 break;
             }
