@@ -10,6 +10,7 @@ all:
 	$(CC) $(COMPILER_FLAGS) $(LINKER_FLAGS) $(OBJS) $(INCLUDE) -o $(OBJ_NAME) $(SDL_CONFIG)
 
 clean:
+	-rm -f editor.txt
 	-rm -f $(OBJ_NAME)
 
 run:

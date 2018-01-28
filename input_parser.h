@@ -22,7 +22,7 @@ bool InGameResetFunc();
 bool InGameStartFunc();
 bool InGameQuitFunc();
 bool InGameSaveFunc();
-void parse_editor_input();
+void parse_editor_input(string filename);
 void parse_terminal_input();
 string InputFile(string filename);
 string InputLine(string filename);
