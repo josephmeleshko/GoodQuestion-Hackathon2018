@@ -7,7 +7,7 @@
   explanation of the syntax of this language:
 
   Before the game starts, you have access to the Save, Help, List Levels, Change
-  Level(), Settings, Change Setting(), Start and Quit commands. These commands
+  Level(), Settings, Change Setting(), Start, and Quit commands. These commands
   will also be available during the game. The commands do the following:
 
     Save: Saves the current game state in memory.
