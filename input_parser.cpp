@@ -297,7 +297,9 @@ void parse_input(){
 
 int main(){
     string input = "";
-    getline(cin, input);
+    ifstream read("input.txt");
+    read >> input;
+    cout << input << endl;
     while(input != "END"){
         parse_input();
         cout << endl;

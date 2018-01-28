@@ -5,7 +5,6 @@
 #include <SDL2/SDL.h>
 #include <string>
 
-//level needs to be int [17][31] kinda
 void drawScreen(int level[]) {
     drawBackground();
     for (int i = 0; i < 17; i++) {
