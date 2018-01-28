@@ -2,6 +2,9 @@
 #include "globalHeader.h"
 #include <SDL2/SDL.h>
 #include <iostream>
+#include <stdio.h>
+#include <string>
+#include <fstream>
 
 void gameInit() {
     SDL_UpdateWindowSurface(mainWindow);
@@ -51,12 +54,12 @@ void mainRun() {
                                 int y = e.button.y;
 
                                 //If the mouse is over the button
-                                if( ( x > 0 ) && ( x < 180 ) && ( y > 0 ) && ( y < 20 ) ) {
+                                if( ( x > 0 ) && ( x < 180 ) && ( y > 0 ) && ( y < 40 ) ) {
                                     //Set the button sprite
                                     //clip = &clips[ CLIP_MOUSEDOWN ];
                                     std::cout << "editor" << std::endl;
                                 }
-                                else if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 20 ) ) {
+                                else if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 40 ) ) {
                                     //Set the button sprite
                                     //clip = &clips[ CLIP_MOUSEDOWN ];
                                     std::cout << "terminal" << std::endl;
@@ -64,18 +67,33 @@ void mainRun() {
                             }
                         }
                         break;
+                case SDL_TEXTINPUT:
                     case SDL_KEYDOWN:
-                    case SDL_TEXTINPUT:
-                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0)
-                            text = text.substr(0, text.length()-1);
-                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0)
-                            text = "";
-                        else if (e.type == SDL_TEXTINPUT)
+                        //Handle backspace
+                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0) {
+                            text.pop_back();
+                        }
+                        //Handle Return
+                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0) {
+                            text += '\n';
+                        }
+                        //Handle text
+                        if (e.type == SDL_TEXTINPUT) {
                         text += e.text.text;
-                        break;
+                        
+                        }
+                    break;
             }
-            std::cout << text << std::endl;
+        std::ofstream file("input.txt");
+        if (!file) {
+            std::cerr << "can't open output file" << std::endl;
+        }
+        file << text;
+        std::cout << text << std::flush;
+        file.flush();
+        file.close();
         }
     }
+    SDL_StopTextInput();
     //std::cout << "You made it out of !quit loop";
 }

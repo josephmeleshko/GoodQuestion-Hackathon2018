@@ -1,5 +1,5 @@
 CC = g++
-COMPILER_FLAGS =
+COMPILER_FLAGS = -std=c++11
 LINKER_FLAGS = -lSDL2
 OBJS = $(shell cat objects.txt)
 INCLUDE = -I/usr/local/include
