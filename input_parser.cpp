@@ -55,7 +55,12 @@ bool InGameBuildFunc(string args){
         return false;
     }
     else{
-        changeSpace(output[0], output[1], output[2]);
+        int value = getSpace(output[0], output[1]);
+        if (value == 0) {
+            if (output[2] == 1 || output[2] == 4 || output[2] == 6 || output[2] == 7) {
+                changeSpace(output[0], output[1], output[2]);
+            }
+        }
     }
     drawScreen(activeLevel);
     return true;
@@ -81,10 +86,11 @@ bool InGameDestroyFunc(string args){
         cout << "NO DELETEY LAVA" << endl;
         return false;
     }
-    else{
-        cout << output[0] << endl;
-        cout << output[1] << endl;
-        changeSpace(output[0], output[1], 0);
+    else {
+        int value = getSpace(output[0], output[1]);
+        if (value == 1 || value == 4 || value == 7) {
+            changeSpace(output[0], output[1], 0);
+        }
     }
     drawScreen(activeLevel);
     return true;

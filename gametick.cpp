@@ -20,12 +20,10 @@ int getSpace(int x, int y) {
 }
 
 void changeSpace(int x, int y, int value) {
-    if (x > 31 || x < 1 || y > 15 || y < 1) {
+    if (x > 31 || x < 1 || y > 15 || y < 1 || value == 2 || value == 3) {
         std::cout << "out of bounds" << std::endl;
     }
-    else {
-        activeLevel[(((17-y)*31) + (x-1))] = value;
-    }
+    activeLevel[(((17-y)*31) + (x-1))] = value;
 }
 
 void gametick() {
