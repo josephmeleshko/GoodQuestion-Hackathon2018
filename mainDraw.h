@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 
-void drawScreen(int level[][31]);
+void drawScreen(int level[]);
 void mainDraw();
 void drawBackground();
 
