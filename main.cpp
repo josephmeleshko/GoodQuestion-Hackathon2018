@@ -16,6 +16,7 @@ const int FRAME_LOCATION_Y = 100;
 const int FRAME_BUFFER = 40;
 
 int blockSize = 40;
+int letterSize = 20;
 SDL_Window* mainWindow = NULL;
 SDL_Window* terminalWindow = NULL;
 SDL_Surface* mainSurface = NULL;

@@ -5,6 +5,7 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include "gametick.h"
+#include "terminalDraw.h"
 #include <stdio.h>
 #include <string>
 #include <fstream>
@@ -33,8 +34,8 @@ void gameInit() {
 }
 
 void mainRun() {
-
     gameInit();
+    terminalDisplay();
     //Event handler
     SDL_Event e;
     bool terminalFocus = true;

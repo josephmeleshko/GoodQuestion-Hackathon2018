@@ -7,6 +7,7 @@ extern bool quit;
 extern bool isPlaying;
 extern bool walkingRight;
 extern int blockSize;
+extern int letterSize;
 extern SDL_Window* mainWindow;
 extern SDL_Window* terminalWindow;
 extern SDL_Surface* mainSurface;
