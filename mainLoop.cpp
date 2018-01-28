@@ -83,12 +83,14 @@ void mainRun() {
                                 //clip = &clips[ CLIP_MOUSEDOWN ];
                                 editTab = true;
                                 terminalTab = false;
+                                terminalWipe();
                             }
                             else if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 40 ) ) {
                                 //Set the button sprite
                                 //clip = &clips[ CLIP_MOUSEDOWN ];
                                 editTab = false;
                                 terminalTab = true;
+                                terminalWipe();
                             }
                         }
                     }

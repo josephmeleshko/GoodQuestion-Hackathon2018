@@ -6,6 +6,7 @@
 #include <locale>
 #include <fstream>
 #include "input_parser.h"
+#include "globalHeader.h"
 #include <stdio.h>
 
 using namespace std;
@@ -159,11 +160,13 @@ bool InGameCheckResourcesFunc(){
 
 
 bool InGamePauseFunc(){
+    isPlaying = false;
     return true;
 }
 
 
 bool InGameContinueFunc(){
+    isPlaying = true;
     return true;
 }
 
@@ -189,8 +192,8 @@ bool InGameSaveFunc(){
 
 
 void parse_editor_input(){
-    string base_input = InputFile("input.txt");
-    
+    string base_input = InputFile("editor.txt");
+
     string delimiter = "\n";
 
     size_t pos = 0;
@@ -200,8 +203,6 @@ void parse_editor_input(){
         cout << token << endl;
         base_input.erase(0, pos + delimiter.length());
     }
-
-    string base_input = InputFile("input.txt");
     if(base_input.find("build") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";

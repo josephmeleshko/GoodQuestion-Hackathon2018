@@ -11,8 +11,25 @@ int terminalI = 0;
 int terminalJ = 0;
 int savedLines = 0;
 
+void terminalWipe() {
+    std::string temp = "./assets/space.bmp";
+    const char *cstar = temp.c_str();
+    SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
+
+    for(int i = 0; i < 35; i++){
+        for(int j = 0; j < 26; j++){
+            renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+1), 14, letterSize);
+
+        }
+    }
+    SDL_UpdateWindowSurface(terminalWindow);
+    SDL_RenderPresent(terminalRenderer);
+    terminalJ = 0;
+    terminalI = 0;
+}
+
 void terminalDisplay(char input){
-    
+
 
         std::string char_directory = "./assets/_.bmp";
         if(input == ','){
@@ -32,7 +49,6 @@ void terminalDisplay(char input){
         terminalJ++;
         if(input == '\b'){
             terminalJ-=2;
-            std::cout << "we are here" << std::endl;
             std::string temp = "./assets/space.bmp";
             const char *cstar = temp.c_str();
             SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
@@ -58,20 +74,7 @@ void terminalDisplay(char input){
                 terminalJ = 0;
             }
             else{
-                std::string temp = "./assets/space.bmp";
-                const char *cstar = temp.c_str();
-                SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
-
-                for(int i = 0; i < 35; i++){
-                    for(int j = 0; j < 26; j++){
-                        renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+1), 14, letterSize);
-
-                    }
-                }
-                SDL_UpdateWindowSurface(terminalWindow);
-                SDL_RenderPresent(terminalRenderer);
-                terminalJ = 0;
-                terminalI = 0;
+                terminalWipe();
             }
         }
 
@@ -79,20 +82,7 @@ void terminalDisplay(char input){
             terminalI++;
             terminalJ = 0;
             if(terminalI > 34){
-                std::string temp = "./assets/space.bmp";
-                const char *cstar = temp.c_str();
-                SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
-
-                for(int i = 0; i < 35; i++){
-                    for(int j = 0; j < 26; j++){
-                        renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+1), 14, letterSize);
-
-                    }
-                }
-                SDL_UpdateWindowSurface(terminalWindow);
-                SDL_RenderPresent(terminalRenderer);
-                terminalJ = 0;
-                terminalI = 0;
+                terminalWipe();
             }
         }
     //while(true){}

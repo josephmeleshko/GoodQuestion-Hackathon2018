@@ -5,5 +5,6 @@
 #include <string>
 
 void terminalDisplay(char input);
+void terminalWipe();
 
 #endif
