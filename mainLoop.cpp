@@ -20,7 +20,7 @@ void gameInit() {
     SDL_UpdateWindowSurface(mainWindow);
     SDL_UpdateWindowSurface(terminalWindow);
     drawBackground();
-    activeLevel = level0data();
+    activeLevel = level1data();
     drawScreen(activeLevel);
 }
 
