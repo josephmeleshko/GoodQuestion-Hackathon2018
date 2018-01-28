@@ -4,6 +4,8 @@
 #include <functional>
 #include <cctype>
 #include <locale>
+#include <fstream>
+#include "input_parser.h"
 using namespace std;
 
 // trim from start
@@ -184,10 +186,8 @@ bool InGameSaveFunc(){
 }
 
 
-void parse_input(){
-    string base_input = "";
-    getline(cin, base_input);
-    base_input = trim(base_input);
+void parse_editor_input(){
+    string base_input = InputFile("input.txt");
     if(base_input.find("Build") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
@@ -212,7 +212,11 @@ void parse_input(){
             InGameDestroyFunc(arguments);
         }
     }
-    else if(base_input.find("Change Level") != string::npos){
+}
+
+void parse_terminal_input(){
+    string base_input = InputLine("input.txt");
+    if(base_input.find("Change Level") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
             //return error;
@@ -294,27 +298,25 @@ void parse_input(){
 
 }
 
-
-int main(){
+string InputFile(string filename) {
     string txt;
     string input = "";
-    ifstream file("input.txt");
+    ifstream file(filename);
     if (file.is_open()) {
         while (file.good()) {
             getline(file, txt);
             input += txt + '\n';
         }
     }
-    cout << input << endl;
     file.close();
+    return input;
+}
 
-    while(input != "END"){
-        parse_input();
-        cout << endl;
-        getline(cin, input);
-    }
-
-
-
-    return 0;
+string InputLine(string filename){
+    string txt;
+    string input = "";
+    ifstream file(filename);
+    getline(file, txt);
+    file.close();
+    return input;
 }
