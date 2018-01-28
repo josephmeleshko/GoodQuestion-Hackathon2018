@@ -34,6 +34,9 @@ SDL_Texture* getTexture(int value) {
     else if (value == 7) {
         tex = loadTexture("./assets/flippedSlope.bmp", mainRenderer);
     }
+    else if (value == 8) {
+        tex = loadTexture("./assets/spikes.bmp", mainRenderer);
+    }
 
     return tex;
 }

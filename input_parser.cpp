@@ -235,6 +235,20 @@ bool InGameResetFunc(){
         for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
         drawScreen(activeLevel);
     }
+    else if (currentLevel == 3) {
+        activeLevel = nullData();
+        levelPointer = level3data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        drawScreen(activeLevel);
+    }
+    else if (currentLevel == 4) {
+        activeLevel = nullData();
+        levelPointer = level4data();
+        for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+        drawScreen(activeLevel);
+    }
+    isPlaying = false;
+    walkingRight = true;
     return true;
 }
 
@@ -276,7 +290,6 @@ void parse_editor_input(string filename){
             }
             else{
                 string arguments = token.substr(token.find('(') + 1, token.find(')') - token.find('(') - 1);
-                cout << arguments;
                 InGameBuildFunc(arguments);
             }
         }
@@ -305,7 +318,6 @@ void parse_terminal_input(){
         }
         else{
             string arguments = base_input.substr(base_input.find('(') + 1, base_input.find(')') - base_input.find('(') - 1);
-            cout << arguments;
             InGameChangeLevelFunc(arguments);
         }
     }
@@ -317,11 +329,10 @@ void parse_terminal_input(){
         }
         else{
             string arguments = base_input.substr(base_input.find('(') + 1, base_input.find(')') - base_input.find('(') - 1);
-            cout << arguments;
             InGameChangeSettingFunc(arguments);
         }
     }
-    else if(base_input.find("change speed") != string::npos){
+    else if(base_input.find("change tickspeed") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
             //return error;
@@ -329,7 +340,6 @@ void parse_terminal_input(){
         }
         else{
             string arguments = base_input.substr(base_input.find('(') + 1, base_input.find(')') - base_input.find('(') - 1);
-            cout << arguments;
             InGameChangeSpeedFunc(arguments);
         }
     }

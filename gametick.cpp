@@ -5,12 +5,13 @@
 #include "levels.h"
 #include <SDL2/SDL.h>
 #include "mainDraw.h"
+#include "input_parser.h"
 #include <iostream>
 
 int lastTickTime = 0;
 
 int getSpace(int x, int y) {
-    if (x > 31 || x < 1 || y > 15 || y < 1) {
+    if (x > 31 || x < 1 || y > 17 || y < 1) {
         std::cout << "out of bounds" << std::endl;
         return -1;
     }
@@ -20,7 +21,7 @@ int getSpace(int x, int y) {
 }
 
 void changeSpace(int x, int y, int value) {
-    if (x > 31 || x < 1 || y > 15 || y < 1 || value == 2 || value == 3) {
+    if (x > 31 || x < 1 || y > 17 || y < 1) {
         std::cout << "out of bounds" << std::endl;
     }
     activeLevel[(((17-y)*31) + (x-1))] = value;
@@ -34,22 +35,21 @@ void gametick() {
             changeSpace(charX, charY, 0);
             charY--;
         }
-        else if (getSpace(charX, charY-1) == 5) {
-            activeLevel = nullData();
-            levelPointer = level0data();
-            for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
-            drawScreen(activeLevel);
-            isPlaying = false;
+        else if (getSpace(charX, charY-1) == 5 || getSpace(charX, charY-1) == 8) {
+            InGameResetFunc();
         }
         else if (walkingRight) {
             if (charX == 31) {
                 walkingRight = false;
             }
-            else if (getSpace(charX, charY-1) == 7) {
+            else if (getSpace(charX, charY-1) == 7 && getSpace(charX+1, charY-1) == 0) {
                 changeSpace(charX+1, charY-1, 2);
                 changeSpace(charX, charY, 0);
                 charX++;
                 charY--;
+            }
+            else if (getSpace(charX, charY-1) == 7 && getSpace(charX+1, charY-1) == 3) {
+                InGameResetFunc();
             }
             else if (getSpace(charX+1, charY) == 0) {
                 changeSpace(charX+1, charY, 2);
@@ -57,17 +57,16 @@ void gametick() {
                 charX++;
             }
             else if (getSpace(charX+1, charY) == 3) {
-                activeLevel = nullData();
-                levelPointer = level0data();
-                for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
-                drawScreen(activeLevel);
-                isPlaying = false;
+                InGameResetFunc();
             }
-            else if (getSpace(charX+1, charY) == 4) {
+            else if (getSpace(charX+1, charY) == 4 && getSpace(charX+1, charY+1) == 0) {
                 changeSpace(charX+1, charY+1, 2);
                 changeSpace(charX, charY, 0);
                 charX++;
                 charY++;
+            }
+            else if (getSpace(charX+1, charY) == 4 && getSpace(charX+1, charY+1) == 3) {
+                InGameResetFunc();
             }
             else {
                 walkingRight = false;
@@ -77,11 +76,14 @@ void gametick() {
             if (charX == 1) {
                 walkingRight = true;
             }
-            else if (getSpace(charX, charY-1) == 4) {
+            else if (getSpace(charX, charY-1) == 4 && getSpace(charX-1, charY-1) == 0) {
                 changeSpace(charX-1, charY-1, 2);
                 changeSpace(charX, charY, 0);
                 charX--;
                 charY--;
+            }
+            else if (getSpace(charX, charY-1) == 4 && getSpace(charX-1, charY-1) == 3) {
+                InGameResetFunc();
             }
             else if (getSpace(charX-1, charY) == 0) {
                 changeSpace(charX-1, charY, 2);
@@ -89,19 +91,17 @@ void gametick() {
                 charX--;
             }
             else if (getSpace(charX-1, charY) == 3) {
-                activeLevel = nullData();
-                levelPointer = level0data();
                 walkingRight = true;
-                for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
-                drawScreen(activeLevel);
-                walkingRight = true;
-                isPlaying = false;
+                InGameResetFunc();
             }
-            else if (getSpace(charX-1, charY) == 7) {
+            else if (getSpace(charX-1, charY) == 7 && getSpace(charX-1, charY+1) == 0) {
                 changeSpace(charX-1, charY+1, 2);
                 changeSpace(charX, charY, 0);
                 charX--;
                 charY++;
+            }
+            else if (getSpace(charX-1, charY) == 7 && getSpace(charX-1, charY+1) == 3)  {
+                InGameResetFunc();
             }
             else {
                 walkingRight = true;
