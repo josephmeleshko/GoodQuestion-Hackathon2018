@@ -67,12 +67,18 @@ void mainRun() {
                         break;
                     case SDL_KEYDOWN:
                     case SDL_TEXTINPUT:
-                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0)
+                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0){
                             text = text.substr(0, text.length()-1);
-                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0)
+                            //TODO
+                        }
+                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0) {
+
                             text = "";
-                        else if (e.type == SDL_TEXTINPUT)
-                        text += e.text.text;
+                            //TODO:
+                        }
+                        else if (e.type == SDL_TEXTINPUT) {
+                            text += e.text.text;
+                        }
                         break;
             }
             std::cout << text << std::endl;
