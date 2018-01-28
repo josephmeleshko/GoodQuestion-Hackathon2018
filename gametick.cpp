@@ -10,11 +10,22 @@
 int lastTickTime = 0;
 
 int getSpace(int x, int y) {
-    return activeLevel[(((17-y)*31) + (x-1))];
+    if (x > 31 || x < 1 || y > 15 || y < 1) {
+        std::cout << "out of bounds" << std::endl;
+        return -1;
+    }
+    else {
+        return activeLevel[(((17-y)*31) + (x-1))];
+    }
 }
 
 void changeSpace(int x, int y, int value) {
-    activeLevel[(((17-y)*31) + (x-1))] = value;
+    if (x > 31 || x < 1 || y > 15 || y < 1) {
+        std::cout << "out of bounds" << std::endl;
+    }
+    else {
+        activeLevel[(((17-y)*31) + (x-1))] = value;
+    }
 }
 
 void gametick() {
