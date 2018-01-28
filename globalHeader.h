@@ -11,5 +11,6 @@ extern SDL_Surface* mainSurface;
 extern SDL_Surface* terminalSurface;
 extern SDL_Renderer* mainRenderer;
 extern SDL_Renderer* terminalRenderer;
+extern int level0data[15][31];
 
 #endif
