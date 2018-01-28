@@ -2,6 +2,10 @@
 #include <iostream>
 #include "mainLoop.h"
 #include "globalHeader.h"
+#include <string>
+#include <fstream>
+
+using namespace std;
 
 const int MAIN_SCREEN_WIDTH = 1280;
 const int MAIN_SCREEN_HEIGHT = 720;
@@ -53,7 +57,7 @@ int main(int argc, const char* argv[]) {
     terminalRenderer = SDL_CreateSoftwareRenderer(terminalSurface);
 
     mainRun();
-    
+
     string input = "";
     ifstream read("input.txt");
     read >> input;
