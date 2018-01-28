@@ -24,7 +24,7 @@ void drawBackground() {
     tex = loadTexture("./assets/bg.bmp", mainRenderer);
     renderTexture(tex, mainRenderer, 0, 0, 1280, 720);
 
-    for (int i = 1; i < 32; i++) {
+    for (int i = 0; i < 32; i++) {
         SDL_Texture* tex2 = NULL;
         std::string s = std::to_string(i);
         s = "./assets/" + s + ".bmp";
