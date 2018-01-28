@@ -83,20 +83,6 @@ void mainRun() {
                         break;
                 case SDL_TEXTINPUT:
                     case SDL_KEYDOWN:
-                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0){
-                            text = text.substr(0, text.length()-1);
-                            //TODO
-                        }
-                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0) {
-
-                            text = "";
-                            //TODO:
-                        }
-                        else if (e.type == SDL_TEXTINPUT) {
-                            text += e.text.text;
-                        }
-                        break;
-            //std::cout << text << std::endl;
                         //Handle backspace
                         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0) {
                             text.pop_back();
@@ -117,7 +103,7 @@ void mainRun() {
             std::cerr << "can't open output file" << std::endl;
         }
         file << text;
-        std::cout << text << std::flush;
+        //std::cout << text << std::flush;
         file.flush();
         file.close();
         }
