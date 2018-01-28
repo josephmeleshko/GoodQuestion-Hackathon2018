@@ -17,6 +17,15 @@ SDL_Texture* getTexture(int value) {
     else if (value == 3) {
         tex = loadTexture("./assets/flag.bmp", mainRenderer);
     }
+    else if (value == 4) {
+        tex = loadTexture("./assets/slope.bmp", mainRenderer);
+    }
+    else if (value == 5) {
+        tex = loadTexture("./assets/lava.bmp", mainRenderer);
+    }
+    else if (value == 6) {
+        tex = loadTexture("./assets/metalBlock.bmp", mainRenderer);
+    }
     return tex;
 }
 
