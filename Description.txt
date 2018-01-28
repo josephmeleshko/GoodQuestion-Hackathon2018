@@ -1,0 +1,12 @@
+"Name of the Game" made by team Good Question.
+
+The game "Name of the Game" is a platformer, where the gameplay revolves around
+controlling the environment so that the character gets to the flag.
+This game is played over multiple windows, the game screen and the Terminal / Editor
+screen. You control the environment by entering commands in the Editor and
+executing them from the Terminal. The game's purpose is to introduce the player
+to the Command Line and teaches the player how to think computationally. The
+game is targeted towards children, but can be enjoyed by all age groups.
+
+The game has a beautiful pixel art design with a grid overlay to aid the player
+in identifying each block's location.
