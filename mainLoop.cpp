@@ -101,7 +101,6 @@ void mainRun() {
                                     for (int i = 0; i < base_input.length()-1; i++) {
                                         terminalDisplay(base_input[i]);
                                     }
-                                    parse_editor_input(filename);
                                 }
 
                                 SDL_Texture* tex = NULL;
