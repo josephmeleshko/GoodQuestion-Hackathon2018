@@ -15,7 +15,6 @@ const int FRAME_LOCATION_Y = 100;
 //stops windows from overlapping
 const int FRAME_BUFFER = 40;
 
-bool quit = false;
 int blockSize = 40;
 SDL_Window* mainWindow = NULL;
 SDL_Window* terminalWindow = NULL;

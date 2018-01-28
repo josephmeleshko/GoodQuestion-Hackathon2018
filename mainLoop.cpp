@@ -4,14 +4,24 @@
 #include "mainDraw.h"
 #include <SDL2/SDL.h>
 #include <iostream>
+#include "gametick.h"
+
+bool quit;
+bool isPlaying;
+int charX;
+int charY;
+int *activeLevel;
 
 void gameInit() {
+    quit = false;
+    isPlaying = true;
+    charX = 0;
+    charY = 0;
     SDL_UpdateWindowSurface(mainWindow);
     SDL_UpdateWindowSurface(terminalWindow);
     drawBackground();
-    int *activeLevel = level2data();
+    activeLevel = level0data();
     drawScreen(activeLevel);
-    quit = false;
 }
 
 void mainRun() {
@@ -25,7 +35,9 @@ void mainRun() {
 
     while (!quit) {
         //Handle events on queue
+        gametick();
         while( SDL_PollEvent( &e ) != 0 ) {
+            gametick();
             //User requests quit
             switch (e.type){
                 case SDL_QUIT:

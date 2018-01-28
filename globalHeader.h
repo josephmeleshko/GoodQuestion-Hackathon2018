@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 
 extern bool quit;
+extern bool isPlaying;
 extern int blockSize;
 extern SDL_Window* mainWindow;
 extern SDL_Window* terminalWindow;
@@ -12,5 +13,7 @@ extern SDL_Surface* terminalSurface;
 extern SDL_Renderer* mainRenderer;
 extern SDL_Renderer* terminalRenderer;
 extern int *activeLevel;
+extern int charX;
+extern int charY;
 
 #endif
