@@ -83,6 +83,7 @@ void mainRun() {
                                 //clip = &clips[ CLIP_MOUSEDOWN ];
                                 editTab = true;
                                 terminalTab = false;
+                                isPlaying = false;
                                 terminalWipe();
                             }
                             else if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 40 ) ) {
