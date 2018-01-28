@@ -188,7 +188,7 @@ bool InGameSaveFunc(){
 
 void parse_editor_input(){
     string base_input = InputFile("input.txt");
-    if(base_input.find("Build") != string::npos){
+    if(base_input.find("build") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
             //return error;
@@ -200,7 +200,7 @@ void parse_editor_input(){
             InGameBuildFunc(arguments);
         }
     }
-    else if(base_input.find("Destroy") != string::npos){
+    else if(base_input.find("destroy") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
             //return error;
@@ -216,7 +216,7 @@ void parse_editor_input(){
 
 void parse_terminal_input(){
     string base_input = InputLine("input.txt");
-    if(base_input.find("Change Level") != string::npos){
+    if(base_input.find("change level") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
             //return error;
@@ -228,7 +228,7 @@ void parse_terminal_input(){
             InGameChangeLevelFunc(arguments);
         }
     }
-    else if(base_input.find("Change Setting") != string::npos){
+    else if(base_input.find("change setting") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
             //return error;
@@ -240,7 +240,7 @@ void parse_terminal_input(){
             InGameChangeSettingFunc(arguments);
         }
     }
-    else if(base_input.find("Change Speed") != string::npos){
+    else if(base_input.find("change speed") != string::npos){
         if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
             string error = "Brackets on both ends are needed to get entire input.";
             //return error;
@@ -252,43 +252,43 @@ void parse_terminal_input(){
             InGameChangeSpeedFunc(arguments);
         }
     }
-    else if(base_input.find("Save") != string::npos){
+    else if(base_input.find("save") != string::npos){
         cout << "Entering the Save func" << endl;
         InGameSaveFunc();
     }
-    else if(base_input.find("Help") != string::npos){
+    else if(base_input.find("help") != string::npos){
         cout << "Entering the Help func" << endl;
         InGameHelpFunc();
     }
-    else if(base_input.find("List Levels") != string::npos){
+    else if(base_input.find("list levels") != string::npos){
         cout << "Entering the List Levels func" << endl;
         InGameListLevelsFunc();
     }
-    else if(base_input.find("Settings") != string::npos){
+    else if(base_input.find("settings") != string::npos){
         cout << "Entering the Settings func" << endl;
         InGameSettingsFunc();
     }
-    else if(base_input.find("Check Resources") != string::npos){
+    else if(base_input.find("check resources") != string::npos){
         cout << "Entering the Check Resources func" << endl;
         InGameCheckResourcesFunc();
     }
-    else if(base_input.find("Pause") != string::npos){
+    else if(base_input.find("pause") != string::npos){
         cout << "Entering the Pause func" << endl;
         InGamePauseFunc();
     }
-    else if(base_input.find("Continue") != string::npos){
+    else if(base_input.find("continue") != string::npos){
         cout << "Entering the Continue func" << endl;
         InGameContinueFunc();
     }
-    else if(base_input.find("Reset") != string::npos){
+    else if(base_input.find("reset") != string::npos){
         cout << "Entering the Reset func" << endl;
         InGameResetFunc();
     }
-    else if(base_input.find("Start") != string::npos){
+    else if(base_input.find("start") != string::npos){
         cout << "Entering the Start func" << endl;
         InGameStartFunc();
     }
-    else if(base_input.find("Quit") != string::npos){
+    else if(base_input.find("quit") != string::npos){
         cout << "Entering the Quit func" << endl;
         InGameQuitFunc();
     }
