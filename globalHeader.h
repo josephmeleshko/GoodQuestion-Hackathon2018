@@ -18,5 +18,7 @@ extern int *activeLevel;
 extern int *levelPointer;
 extern int charX;
 extern int charY;
+extern int terminalI;
+extern int terminalJ;
 
 #endif

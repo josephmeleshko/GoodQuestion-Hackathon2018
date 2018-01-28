@@ -35,7 +35,6 @@ void gameInit() {
 
 void mainRun() {
     gameInit();
-    terminalDisplay();
     //Event handler
     SDL_Event e;
     bool terminalFocus = true;
@@ -45,10 +44,12 @@ void mainRun() {
     std::string text = "";
 
     while (!quit) {
+        terminalDisplay();
         //Handle events on queue
         gametick();
         while( SDL_PollEvent( &e ) != 0 ) {
             gametick();
+            terminalDisplay();
             //User requests quit
             switch (e.type){
                 case SDL_QUIT:
