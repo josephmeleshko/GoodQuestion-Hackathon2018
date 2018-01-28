@@ -40,13 +40,56 @@ void terminalDisplay(char input){
             renderTexture(tex, terminalRenderer, letterSize*terminalJ, letterSize*(terminalI+1), letterSize, letterSize);
             SDL_UpdateWindowSurface(terminalWindow);
             SDL_RenderPresent(terminalRenderer);
+            if(terminalJ < 0){
+                if(terminalI > 0){
+                    terminalJ = 17;
+                    terminalI--;
+                }
+                else{
+                    terminalJ = 0;
+                }
+            }
+        }
+        else if(input == '\n'){
+            if(terminalI != 35){
+                terminalI++;
+                terminalJ = 0;
+            }
+            else{
+                std::string temp = "./assets/space.bmp";
+                const char *cstar = temp.c_str();
+                SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
 
+                for(int i = 0; i < 35; i++){
+                    for(int j = 0; j < 18; j++){
+                        renderTexture(tex, terminalRenderer, letterSize*j, letterSize*(i+1), letterSize, letterSize);
+
+                    }
+                }
+                SDL_UpdateWindowSurface(terminalWindow);
+                SDL_RenderPresent(terminalRenderer);
+                terminalJ = 0;
+                terminalI = 0;
+            }
         }
 
         if(terminalJ > 17){
             terminalI++;
             terminalJ = 0;
-            if(terminalI > 35){
+            if(terminalI > 34){
+                std::string temp = "./assets/space.bmp";
+                const char *cstar = temp.c_str();
+                SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
+
+                for(int i = 0; i < 35; i++){
+                    for(int j = 0; j < 18; j++){
+                        renderTexture(tex, terminalRenderer, letterSize*j, letterSize*(i+1), letterSize, letterSize);
+
+                    }
+                }
+                SDL_UpdateWindowSurface(terminalWindow);
+                SDL_RenderPresent(terminalRenderer);
+                terminalJ = 0;
                 terminalI = 0;
             }
         }
