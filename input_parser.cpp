@@ -8,6 +8,7 @@
 #include "input_parser.h"
 #include "globalHeader.h"
 #include "mainDraw.h"
+#include "gametick.h"
 #include "levels.h"
 #include <stdio.h>
 
@@ -34,64 +35,59 @@ static inline string &trim(string &s) {
 
 
 bool InGameBuildFunc(string args){
-    string output [4];
+    int output[3];
     string temp = args;
     int count = 0;
     while(temp.find(',') != string::npos){
-        if(count < 4){
-            output[count] = temp.substr(0, temp.find(','));
+        if(count < 2){
+            output[count] = stoi(temp.substr(0, temp.find(',')).c_str());
         }
         count++;
         temp = temp.substr(temp.find(',') + 1);
-        cout << temp << endl;
     }
-
-    if(count != 3|| count > 3){
+    output[count] = stoi(temp.c_str());
+    if(count != 2|| count > 2){
         cout << "Wrong amount of arguments for the Build() command";
         return false;
     }
-    else{
-        output[count] = temp;
-        for(int i = 0; i < 4; i++){
-            cout << output[i] << " ";
-        }
+    else if (output[1] < 2) {
+        cout << "NO DELETEY LAVA" << endl;
+        return false;
     }
+    else{
+        changeSpace(output[0], output[1], output[2]);
+    }
+    drawScreen(activeLevel);
     return true;
 }
 
 bool InGameDestroyFunc(string args){
+    int output[2];
     string temp = args;
-    if(temp.find("All") != string::npos){
-        temp = trim(temp);
-        cout << temp;
-        return true;
+    int count = 0;
+    while(temp.find(',') != string::npos){
+        if(count < 1){
+            output[count] = stoi(temp.substr(0, temp.find(',')).c_str());
+        }
+        count++;
+        temp = temp.substr(temp.find(',') + 1);
     }
-    else {
-        string output [2];
-        int count = 0;
-        while(temp.find(',') != string::npos){
-            if(count < 2){
-                output[count] = temp.substr(0, temp.find(','));
-            }
-            count++;
-            temp = temp.substr(temp.find(',') + 1);
-            cout << temp << endl;
-        }
-
-        if(count != 1 || count > 1){
-            cout << "Wrong amount of arguments for the Destroy() command";
-            return false;
-        }
-        else{
-            output[count] = temp;
-            for(int i = 0; i < 2; i++){
-                cout << output[i] << " ";
-            }
-        }
-        return true;
+    output[count] = stoi(temp.c_str());
+    if(count != 1|| count > 1){
+        cout << "Wrong amount of arguments for the Destroy() command";
+        return false;
     }
-
-
+    else if (output[1] < 2) {
+        cout << "NO DELETEY LAVA" << endl;
+        return false;
+    }
+    else{
+        cout << output[0] << endl;
+        cout << output[1] << endl;
+        changeSpace(output[0], output[1], 0);
+    }
+    drawScreen(activeLevel);
+    return true;
 }
 
 bool InGameChangeLevelFunc(string arg){
@@ -193,6 +189,12 @@ bool InGameContinueFunc(){
     return true;
 }
 
+bool InGameRunCode() {
+    InGameResetFunc();
+    parse_editor_input("editor.txt");
+    return true;
+}
+
 
 bool InGameResetFunc(){
     if (currentLevel == 0) {
@@ -237,6 +239,8 @@ void parse_editor_input(string filename){
 
     string base_input = InputFile(filename);
 
+    cout << base_input << endl;
+
     string delimiter = "\n";
 
     size_t pos = 0;
@@ -244,29 +248,28 @@ void parse_editor_input(string filename){
     while ((pos = base_input.find(delimiter)) != string::npos) {
         token = base_input.substr(0, pos);
         base_input.erase(0, pos + delimiter.length());
-    }
-    if(base_input.find("build") != string::npos){
-        if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
-            string error = "Brackets on both ends are needed to get entire input.";
-            //return error;
-            cout << error;
+        if(token.find("build") != string::npos){
+            if(token.find('(') == string::npos || token.find(')') == string::npos){
+                string error = "Brackets on both ends are needed to get entire input.";
+                //return error;
+                cout << error;
+            }
+            else{
+                string arguments = token.substr(token.find('(') + 1, token.find(')') - token.find('(') - 1);
+                cout << arguments;
+                InGameBuildFunc(arguments);
+            }
         }
-        else{
-            string arguments = base_input.substr(base_input.find('(') + 1, base_input.find(')') - base_input.find('(') - 1);
-            cout << arguments;
-            InGameBuildFunc(arguments);
-        }
-    }
-    else if(base_input.find("destroy") != string::npos){
-        if(base_input.find('(') == string::npos || base_input.find(')') == string::npos){
-            string error = "Brackets on both ends are needed to get entire input.";
-            //return error;
-            cout << error;
-        }
-        else{
-            string arguments = base_input.substr(base_input.find('(') + 1, base_input.find(')') - base_input.find('(') - 1);
-            cout << arguments;
-            InGameDestroyFunc(arguments);
+        else if(token.find("destroy") != string::npos){
+            if(token.find('(') == string::npos || token.find(')') == string::npos){
+                string error = "Brackets on both ends are needed to get entire input.";
+                //return error;
+                cout << error;
+            }
+            else{
+                string arguments = token.substr(token.find('(') + 1, token.find(')') - token.find('(') - 1);
+                InGameDestroyFunc(arguments);
+            }
         }
     }
 }
@@ -341,6 +344,10 @@ void parse_terminal_input(){
     else if(base_input.find("reset") != string::npos){
         cout << "Entering the Reset func" << endl;
         InGameResetFunc();
+    }
+    else if(base_input.find("run code") != string::npos){
+        cout << "Entering the InGameRunCode func" << endl;
+        InGameRunCode();
     }
     else if(base_input.find("start") != string::npos){
         cout << "Entering the Start func" << endl;
