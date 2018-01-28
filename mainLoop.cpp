@@ -7,6 +7,7 @@
 #include "gametick.h"
 #include "terminalDraw.h"
 #include "input_parser.h"
+#include "textures.h"
 #include <stdio.h>
 #include <string>
 #include <fstream>
@@ -18,6 +19,7 @@ int charX;
 int charY;
 int *activeLevel;
 int *levelPointer;
+std::string filename = "editor.txt";
 
 void gameInit() {
     quit = false;
@@ -32,6 +34,11 @@ void gameInit() {
     levelPointer = level0data();
     for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
     drawScreen(activeLevel);
+    SDL_Texture* tex = NULL;
+    tex = loadTexture("./assets/tab0.bmp", terminalRenderer);
+    renderTexture(tex, terminalRenderer, 0, 0, 360, 40);
+    SDL_UpdateWindowSurface(terminalWindow);
+    SDL_RenderPresent(terminalRenderer);
 }
 
 void mainRun() {
@@ -78,20 +85,40 @@ void mainRun() {
                             int y = e.button.y;
 
                             //If the mouse is over the button
-                            if( ( x > 0 ) && ( x < 180 ) && ( y > 0 ) && ( y < 40 ) ) {
+                            if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 40 ) ) {
                                 //Set the button sprite
                                 //clip = &clips[ CLIP_MOUSEDOWN ];
                                 editTab = true;
                                 terminalTab = false;
                                 isPlaying = false;
                                 terminalWipe();
+
+                                if (InputFile(filename).length() > 0) {
+                                    string base_input = InputFile(filename);
+
+                                    for (int i = 0; i < base_input.length()-1; i++) {
+                                        terminalDisplay(base_input[i]);
+                                    }
+                                    parse_editor_input(filename);
+                                }
+                                
+                                SDL_Texture* tex = NULL;
+                                tex = loadTexture("./assets/tab1.bmp", terminalRenderer);
+                                renderTexture(tex, terminalRenderer, 0, 0, 360, 40);
+                                SDL_UpdateWindowSurface(terminalWindow);
+                                SDL_RenderPresent(terminalRenderer);
                             }
-                            else if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 40 ) ) {
+                            else if( ( x > 0 ) && ( x < 180 ) && ( y > 0 ) && ( y < 40 ) ) {
                                 //Set the button sprite
                                 //clip = &clips[ CLIP_MOUSEDOWN ];
                                 editTab = false;
                                 terminalTab = true;
                                 terminalWipe();
+                                SDL_Texture* tex = NULL;
+                                tex = loadTexture("./assets/tab0.bmp", terminalRenderer);
+                                renderTexture(tex, terminalRenderer, 0, 0, 360, 40);
+                                SDL_UpdateWindowSurface(terminalWindow);
+                                SDL_RenderPresent(terminalRenderer);
                             }
                         }
                     }
@@ -144,7 +171,8 @@ void mainRun() {
                             text += e.text.text;
                             terminalDisplay(text[text.length()-1]);
                         }
-                        std::ofstream editorFile("editor.txt");
+
+                        std::ofstream editorFile(filename);
                         if (!editorFile) {
                             std::cerr << "can't open output file" << std::endl;
                         }

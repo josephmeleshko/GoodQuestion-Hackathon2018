@@ -172,6 +172,7 @@ bool InGameContinueFunc(){
 
 
 bool InGameResetFunc(){
+
     return true;
 }
 
@@ -191,8 +192,9 @@ bool InGameSaveFunc(){
 }
 
 
-void parse_editor_input(){
-    string base_input = InputFile("editor.txt");
+void parse_editor_input(string filename){
+
+    string base_input = InputFile(filename);
 
     string delimiter = "\n";
 
@@ -200,7 +202,6 @@ void parse_editor_input(){
     string token;
     while ((pos = base_input.find(delimiter)) != string::npos) {
         token = base_input.substr(0, pos);
-        cout << token << endl;
         base_input.erase(0, pos + delimiter.length());
     }
     if(base_input.find("build") != string::npos){

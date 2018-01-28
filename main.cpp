@@ -60,6 +60,7 @@ int main(int argc, const char* argv[]) {
     mainRun();
 
     //Once we're out of the main loop close everything
+
     SDL_DestroyWindow(mainWindow);
     SDL_DestroyWindow(terminalWindow);
     SDL_Quit();

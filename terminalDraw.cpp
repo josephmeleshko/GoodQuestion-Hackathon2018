@@ -16,9 +16,9 @@ void terminalWipe() {
     const char *cstar = temp.c_str();
     SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
 
-    for(int i = 0; i < 35; i++){
+    for(int i = 0; i < 34; i++){
         for(int j = 0; j < 26; j++){
-            renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+1), 14, letterSize);
+            renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+2), 14, letterSize);
 
         }
     }
@@ -43,7 +43,7 @@ void terminalDisplay(char input){
         }
         const char *cstar = char_directory.c_str();
         SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
-        renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+1), 14, letterSize);
+        renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
         SDL_UpdateWindowSurface(terminalWindow);
         SDL_RenderPresent(terminalRenderer);
         terminalJ++;
@@ -52,14 +52,14 @@ void terminalDisplay(char input){
             std::string temp = "./assets/space.bmp";
             const char *cstar = temp.c_str();
             SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
-            renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+1), 14, letterSize);
+            renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
             SDL_UpdateWindowSurface(terminalWindow);
             SDL_RenderPresent(terminalRenderer);
             if(terminalJ < 0){
                 if(terminalI > 0){
                     terminalJ = 25;
                     terminalI--;
-                    renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+1), 14, letterSize);
+                    renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
                     SDL_UpdateWindowSurface(terminalWindow);
                     SDL_RenderPresent(terminalRenderer);
                 }
@@ -69,7 +69,7 @@ void terminalDisplay(char input){
             }
         }
         else if(input == '\n'){
-            if(terminalI != 35){
+            if(terminalI != 34){
                 terminalI++;
                 terminalJ = 0;
             }
@@ -81,7 +81,7 @@ void terminalDisplay(char input){
         if(terminalJ > 25){
             terminalI++;
             terminalJ = 0;
-            if(terminalI > 34){
+            if(terminalI > 33){
                 terminalWipe();
             }
         }
