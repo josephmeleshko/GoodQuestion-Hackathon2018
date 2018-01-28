@@ -49,10 +49,18 @@ void terminalDisplay(char input){
         SDL_RenderPresent(terminalRenderer);
         terminalJ++;
         if(input == '\b'){
-            terminalJ-=2;
+
+            terminalJ--;
+            
             std::string temp = "./assets/space.bmp";
             const char *cstar = temp.c_str();
             SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
+            renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
+            SDL_UpdateWindowSurface(terminalWindow);
+            SDL_RenderPresent(terminalRenderer);
+
+            terminalJ--;
+
             renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
             SDL_UpdateWindowSurface(terminalWindow);
             SDL_RenderPresent(terminalRenderer);
@@ -94,6 +102,12 @@ void terminalDisplay(char input){
                 terminalWipe();
             }
         }
+        std::string cursor = "./assets/cursor.bmp";
+        const char *cursorstar = cursor.c_str();
+        SDL_Texture* tex1 = loadTexture(cursorstar, terminalRenderer);
+        renderTexture(tex1, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
+        SDL_UpdateWindowSurface(terminalWindow);
+        SDL_RenderPresent(terminalRenderer);
     //while(true){}
 
 }
