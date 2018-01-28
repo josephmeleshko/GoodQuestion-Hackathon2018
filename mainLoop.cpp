@@ -40,16 +40,16 @@ void mainRun() {
     bool terminalFocus = true;
     bool editTab = false;
     bool terminalTab = true;
+    int current_char = 0;
     SDL_StartTextInput();
     std::string text = "";
 
     while (!quit) {
-        terminalDisplay();
+        //terminalDisplay();
         //Handle events on queue
         gametick();
         while( SDL_PollEvent( &e ) != 0 ) {
             gametick();
-            terminalDisplay();
             //User requests quit
             switch (e.type){
                 case SDL_QUIT:
@@ -101,26 +101,34 @@ void mainRun() {
                         //Handle backspace
                         if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0) {
                             text.pop_back();
+                            current_char --;
+                            terminalDisplay('\b');
                         }
                         //Handle Return
                         else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0) {
                             text += '\n';
+                            current_char ++;
+                            terminalDisplay('\n');
                         }
                         //Handle text
                         if (e.type == SDL_TEXTINPUT) {
-                        text += e.text.text;
-
+                            text += e.text.text;
+                            current_char ++;
+                            terminalDisplay(text[text.length()-1]);
                         }
+
+                    std::ofstream file("input.txt");
+                    if (!file) {
+                        std::cerr << "can't open output file" << std::endl;
+                    }
+                    file << text;
+                    file.flush();
+                    file.close();
+
+                    //std::cout << char(text[text.length()-1]) << std::endl;
                 }
                 break;
             }
-        std::ofstream file("input.txt");
-        if (!file) {
-            std::cerr << "can't open output file" << std::endl;
-        }
-        file << text;
-        file.flush();
-        file.close();
         }
     }
     SDL_StopTextInput();

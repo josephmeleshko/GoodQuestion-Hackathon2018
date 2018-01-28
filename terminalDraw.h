@@ -2,7 +2,8 @@
 #define TERMINALDRAW_H
 
 #include <SDL2/SDL.h>
+#include <string>
 
-void terminalDisplay();
+void terminalDisplay(char input);
 
 #endif
