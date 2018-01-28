@@ -58,14 +58,6 @@ int main(int argc, const char* argv[]) {
 
     mainRun();
 
-    string txt;
-    string input = "";
-    ifstream file("input.txt");
-    if (file.is_open())
-         while (file.good())
-             input += getline(file, txt); + '\n';
-    file.close();
-
 /*
     string input = "";
     ifstream read("input.txt");
