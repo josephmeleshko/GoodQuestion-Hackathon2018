@@ -53,6 +53,11 @@ int main(int argc, const char* argv[]) {
     terminalRenderer = SDL_CreateSoftwareRenderer(terminalSurface);
 
     mainRun();
+    
+    string input = "";
+    ifstream read("input.txt");
+    read >> input;
+    cout << input << endl;
 
     //Once we're out of the main loop close everything
     SDL_DestroyWindow(mainWindow);
