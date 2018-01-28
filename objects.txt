@@ -1,1 +1,1 @@
-main.cpp mainLoop.cpp mainDraw.cpp levels.cpp textures.cpp gametick.cpp terminalDraw.cpp
+main.cpp mainLoop.cpp mainDraw.cpp levels.cpp textures.cpp gametick.cpp terminalDraw.cpp input_parser.cpp
