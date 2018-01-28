@@ -20,6 +20,7 @@ const int FRAME_LOCATION_Y = 100;
 const int FRAME_BUFFER = 40;
 
 int blockSize = 40;
+int letterSize = 20;
 SDL_Window* mainWindow = NULL;
 SDL_Window* terminalWindow = NULL;
 SDL_Surface* mainSurface = NULL;
@@ -57,14 +58,6 @@ int main(int argc, const char* argv[]) {
     terminalRenderer = SDL_CreateSoftwareRenderer(terminalSurface);
 
     mainRun();
-
-/*
-    string input = "";
-    ifstream read("input.txt");
-    read >> input;
-    std::getline(read,input);
-    cout << input << endl;
-    */
 
     //Once we're out of the main loop close everything
     SDL_DestroyWindow(mainWindow);
