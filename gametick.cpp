@@ -25,15 +25,18 @@ void gametick() {
             changeSpace(charX, charY, 0);
             charY--;
         }
+        else if (getSpace(charX, charY-1) == 5) {
+            activeLevel = nullData();
+            levelPointer = level0data();
+            for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}
+            drawScreen(activeLevel);
+        }
         else if (getSpace(charX+1, charY) == 0) {
             changeSpace(charX+1, charY, 2);
             changeSpace(charX, charY, 0);
             charX++;
         }
         else if (getSpace(charX+1, charY) == 3) {
-            changeSpace(charX+1, charY, 2);
-            changeSpace(charX, charY, 0);
-            charX++;
             activeLevel = nullData();
             levelPointer = level0data();
             for (int i = 0; i < 527; i++) {activeLevel[i] = levelPointer[i];}

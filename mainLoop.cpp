@@ -11,6 +11,7 @@
 
 bool quit;
 bool isPlaying;
+bool walkingRight;
 int charX;
 int charY;
 int *activeLevel;
@@ -19,6 +20,7 @@ int *levelPointer;
 void gameInit() {
     quit = false;
     isPlaying = true;
+    walkingRight = true;
     charX = 0;
     charY = 0;
     SDL_UpdateWindowSurface(mainWindow);
@@ -51,7 +53,7 @@ void mainRun() {
                 quit = true;
                 //std::cout<< "You made it to quit";
                 break;
-                
+
                 case SDL_WINDOWEVENT:
                     if (e.window.windowID == SDL_GetWindowID(terminalWindow)){
                         switch(e.window.event){
