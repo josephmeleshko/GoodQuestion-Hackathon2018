@@ -14,10 +14,11 @@ void gameInit() {
 }
 
 void mainRun() {
+
     gameInit();
     //Event handler
     SDL_Event e;
-
+    bool terminalFocus = true;
     SDL_StartTextInput();
     std::string text = "";
 
@@ -30,22 +31,36 @@ void mainRun() {
                     quit = true;
                     //std::cout<< "You made it to quit";
                     break;
+                case SDL_WINDOWEVENT:
+                    if (e.window.windowID == SDL_GetWindowID(terminalWindow)){
+                        switch(e.window.event){
+                            case SDL_WINDOWEVENT_FOCUS_GAINED:
+                                terminalFocus = true;
+                                break;
+                            case SDL_WINDOWEVENT_FOCUS_LOST:
+                                terminalFocus = false;
+                                break;
+                        }
+                    }
+                    break;
                 case SDL_MOUSEBUTTONDOWN:
-                    switch (e.button.button) {
-                        case SDL_BUTTON_LEFT:
-                            int x = e.button.x;
-                            int y = e.button.y;
+                    if (terminalFocus) {
+                        switch (e.button.button) {
+                            case SDL_BUTTON_LEFT:
+                                int x = e.button.x;
+                                int y = e.button.y;
 
-                            //If the mouse is over the button
-                            if( ( x > 0 ) && ( x < 180 ) && ( y > 0 ) && ( y < 20 ) ) {
-                                //Set the button sprite
-                                //clip = &clips[ CLIP_MOUSEDOWN ];
-                                std::cout << "editor" << std::endl;
-                            }
-                            else if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 20 ) ) {
-                                //Set the button sprite
-                                //clip = &clips[ CLIP_MOUSEDOWN ];
-                                std::cout << "terminal" << std::endl;
+                                //If the mouse is over the button
+                                if( ( x > 0 ) && ( x < 180 ) && ( y > 0 ) && ( y < 20 ) ) {
+                                    //Set the button sprite
+                                    //clip = &clips[ CLIP_MOUSEDOWN ];
+                                    std::cout << "editor" << std::endl;
+                                }
+                                else if( ( x > 180 ) && ( x < 360 ) && ( y > 0 ) && ( y < 20 ) ) {
+                                    //Set the button sprite
+                                    //clip = &clips[ CLIP_MOUSEDOWN ];
+                                    std::cout << "terminal" << std::endl;
+                                }
                             }
                         }
                         break;
