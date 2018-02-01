@@ -44,6 +44,7 @@ SDL_Texture* getTexture(int value) {
 SDL_Texture* loadTexture(const char* file, SDL_Renderer *ren) {
     SDL_Surface* surface = SDL_LoadBMP(file);
     SDL_Texture* texture = SDL_CreateTextureFromSurface(ren, surface);
+    SDL_FreeSurface(surface);
 	return texture;
 }
 

@@ -20,9 +20,9 @@ void terminalWipe() {
     for(int i = 0; i < 34; i++){
         for(int j = 0; j < 26; j++){
             renderTexture(tex, terminalRenderer, 14*j, letterSize*(i+2), 14, letterSize);
-
         }
     }
+    SDL_DestroyTexture(tex);
     SDL_UpdateWindowSurface(terminalWindow);
     SDL_RenderPresent(terminalRenderer);
     terminalJ = 0;
@@ -45,6 +45,7 @@ void terminalDisplay(char input){
         const char *cstar = char_directory.c_str();
         SDL_Texture* tex = loadTexture(cstar, terminalRenderer);
         renderTexture(tex, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
+        SDL_DestroyTexture(tex);
         SDL_UpdateWindowSurface(terminalWindow);
         SDL_RenderPresent(terminalRenderer);
         terminalJ++;
@@ -84,6 +85,7 @@ void terminalDisplay(char input){
                     terminalJ = 0;
                 }
             }
+            SDL_DestroyTexture(tex);
         }
         else if(input == '\n'){
             if(terminalI != 34){
@@ -106,6 +108,7 @@ void terminalDisplay(char input){
         const char *cursorstar = cursor.c_str();
         SDL_Texture* tex1 = loadTexture(cursorstar, terminalRenderer);
         renderTexture(tex1, terminalRenderer, 14*terminalJ, letterSize*(terminalI+2), 14, letterSize);
+        SDL_DestroyTexture(tex1);
         SDL_UpdateWindowSurface(terminalWindow);
         SDL_RenderPresent(terminalRenderer);
 

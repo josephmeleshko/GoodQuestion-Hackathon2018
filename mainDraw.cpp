@@ -12,6 +12,7 @@ void drawScreen(int level[]) {
             int value = level[31*i + j];
             SDL_Texture* tex = getTexture(value);
             renderTexture(tex, mainRenderer, blockSize*(j+1), blockSize*(i), blockSize, blockSize);
+            SDL_DestroyTexture(tex);
         }
     }
     SDL_UpdateWindowSurface(mainWindow);
@@ -23,6 +24,7 @@ void drawBackground() {
     std::string bgnum = "./assets/bg" + std::to_string(currentLevel) + ".bmp";
     tex = loadTexture(bgnum.c_str(), mainRenderer);
     renderTexture(tex, mainRenderer, 0, 0, 1280, 720);
+    SDL_DestroyTexture(tex);
 
     for (int i = 0; i < 32; i++) {
         SDL_Texture* tex2 = NULL;
@@ -31,6 +33,7 @@ void drawBackground() {
         const char *cstar = s.c_str();
         tex2 = loadTexture(cstar, mainRenderer);
         renderTexture(tex2, mainRenderer, blockSize*(i), 680, blockSize, blockSize);
+        SDL_DestroyTexture(tex2);
     }
 
     for (int i = 1; i < 18; i++) {
@@ -40,6 +43,7 @@ void drawBackground() {
         const char *cstar = s.c_str();
         tex3 = loadTexture(cstar, mainRenderer);
         renderTexture(tex3, mainRenderer, 0, 720-(blockSize*(i+1)), blockSize, blockSize);
+        SDL_DestroyTexture(tex3);
     }
 }
 

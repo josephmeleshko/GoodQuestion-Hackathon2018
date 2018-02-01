@@ -54,6 +54,7 @@ void mainRun() {
     bool terminalTab = true;
     SDL_StartTextInput();
     std::string text = "";
+    std::string editorText = "";
 
     while (!quit) {
         //terminalDisplay();
@@ -160,26 +161,26 @@ void mainRun() {
                     }
                     if(editTab) {
                         //Handle backspace
-                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && text.length() > 0) {
-                            text.pop_back();
+                        if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_BACKSPACE && editorText.length() > 0) {
+                            editorText.pop_back();
                             terminalDisplay('\b');
                         }
                         //Handle Return
-                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && text.length() > 0) {
-                            text += '\n';
+                        else if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN && editorText.length() > 0) {
+                            editorText += '\n';
                             terminalDisplay('\n');
                         }
                         //Handle text
                         if (e.type == SDL_TEXTINPUT) {
-                            text += e.text.text;
-                            terminalDisplay(text[text.length()-1]);
+                            editorText += e.text.text;
+                            terminalDisplay(editorText[editorText.length()-1]);
                         }
 
                         std::ofstream editorFile(filename);
                         if (!editorFile) {
                             std::cerr << "can't open output file" << std::endl;
                         }
-                        editorFile << text;
+                        editorFile << editorText;
                         editorFile.flush();
                         editorFile.close();
                     }
