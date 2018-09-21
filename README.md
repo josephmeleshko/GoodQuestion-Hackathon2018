@@ -6,4 +6,4 @@ Because why name things so that things make sense?
 
 Made at HackED2018.
 
-A platformer game with the twist of player movement and block placement being controlled through a custom programming language.
+A platformer game with the twist of player movement and block placement being controlled through a custom programming language. See help.txt for more information about how to play the game
